@@ -51,7 +51,7 @@ public class TestController {
             @PathVariable("params") String params
     ) {
         System.out.println("简单交换机参数:"+params);
-        rabbitTemplate.convertAndSend("",EasyRabbitConfig.EASY_QUEUE_NAME,"Hello Word easyRabbitMq"+params);
+        rabbitTemplate.convertAndSend("",EasyRabbitConfig.EASY_QUEUE_NAME,"Hello Word easyRabbitMq:"+params);
         return "ok";
     }
 

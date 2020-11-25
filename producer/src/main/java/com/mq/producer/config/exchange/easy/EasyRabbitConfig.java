@@ -39,7 +39,7 @@ public class EasyRabbitConfig {
 
     /**
      * 学习版本
-     * @param params
+     * @param params 参数
      * @throws IOException
      * @throws TimeoutException
      */
