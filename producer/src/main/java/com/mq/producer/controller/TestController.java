@@ -26,11 +26,16 @@ public class TestController {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
+    /**
+     * 扇形(广播)模式
+     * @param params 参数
+     * @return ret
+     */
     @GetMapping("/send/fanout/{params}")
     public String sendFanoutMessage(
             @PathVariable("params") String params
     ){
-        System.out.println("参数:"+params);
+        System.out.println("扇形(广播)模式参数:"+params);
         rabbitTemplate.convertAndSend(FanoutRabbitConfig.FANOUT_EXCHANGE_NAME,null,params);
         return "ok";
     }
@@ -45,6 +50,7 @@ public class TestController {
     public String sendEasyMessage(
             @PathVariable("params") String params
     ) {
+        System.out.println("简单交换机参数:"+params);
         rabbitTemplate.convertAndSend("",EasyRabbitConfig.EASY_QUEUE_NAME,"Hello Word easyRabbitMq"+params);
         return "ok";
     }
@@ -59,7 +65,7 @@ public class TestController {
     public String sendDirectMessage(
             @PathVariable("params") String params
     ) {
-        System.out.println("name:" + params);
+        System.out.println("直连交换机参数:"+params);
         String messageId = String.valueOf(UUID.randomUUID());
         String messageData = "test message, hello!";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -70,7 +76,6 @@ public class TestController {
         map.put("createTime", createTime);
         map.put("name", params);
         //把信息存入消息队列
-
         /**
          * 1.exchange: 交换机
          * 2.routingKey: 路由名称
