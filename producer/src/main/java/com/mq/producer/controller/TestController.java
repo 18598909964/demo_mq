@@ -1,6 +1,7 @@
 package com.mq.producer.controller;
 
 import com.mq.producer.config.exchange.easy.EasyRabbitConfig;
+import com.mq.producer.config.exchange.fanout.FanoutRabbitConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * @author xiao_wu
+ * @author xiao-_-wu
  * @date 2020/11/20 17:19
  */
 @RestController
@@ -24,6 +25,15 @@ public class TestController {
 
     @Resource
     private RabbitTemplate rabbitTemplate;
+
+    @GetMapping("/send/fanout/{params}")
+    public String sendFanoutMessage(
+            @PathVariable("params") String params
+    ){
+        System.out.println("参数:"+params);
+        rabbitTemplate.convertAndSend(FanoutRabbitConfig.FANOUT_EXCHANGE_NAME,null,params);
+        return "ok";
+    }
 
     /**
      * 简单交换机

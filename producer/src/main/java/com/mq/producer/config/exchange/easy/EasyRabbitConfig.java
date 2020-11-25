@@ -37,6 +37,12 @@ public class EasyRabbitConfig {
         return new Queue(EASY_QUEUE_NAME,true,false,false,null);
     }
 
+    /**
+     * 学习版本
+     * @param params
+     * @throws IOException
+     * @throws TimeoutException
+     */
     public static void easyRabbitMq(String params) throws IOException, TimeoutException {
         //1.创建连接工厂
         ConnectionFactory factory = new ConnectionFactory();

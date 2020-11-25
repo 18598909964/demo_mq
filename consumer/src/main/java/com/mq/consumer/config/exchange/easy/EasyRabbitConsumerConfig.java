@@ -17,6 +17,11 @@ public class EasyRabbitConsumerConfig {
      */
     public static final String EASY_QUEUE_NAME = "easy_queue_name";
 
+    /**
+     * 学习版本
+     * @throws IOException
+     * @throws TimeoutException
+     */
     public static void easyRabbitConsumer() throws IOException, TimeoutException {
         //1.创建连接工厂
         ConnectionFactory factory = new ConnectionFactory();

@@ -1,6 +1,7 @@
 package com.mq.consumer.config.receiver;
 
 import com.mq.consumer.config.exchange.easy.EasyRabbitConsumerConfig;
+import com.mq.consumer.config.exchange.fanout.FanoutRabbitConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -34,5 +35,24 @@ public class RabbitMqReceiver {
     public void easyReceiver(Object o){
         System.out.println("这是简单模式下的消费者");
         System.out.println(o.toString());
+    }
+
+    @RabbitHandler
+    @RabbitListener(queues = FanoutRabbitConfig.FANOUT_QUEUE_NAME_A)
+    public void fanoutReceiverA(Object o){
+        System.out.println("这是扇形(广播)消费者--A");
+        System.out.println("message:" + o.toString());
+    }
+    @RabbitHandler
+    @RabbitListener(queues = FanoutRabbitConfig.FANOUT_QUEUE_NAME_B)
+    public void fanoutReceiverB(Object o){
+        System.out.println("这是扇形(广播)消费者--B");
+        System.out.println("message:" + o.toString());
+    }
+    @RabbitHandler
+    @RabbitListener(queues = FanoutRabbitConfig.FANOUT_QUEUE_NAME_C)
+    public void fanoutReceiverC(Object o){
+        System.out.println("这是扇形(广播)消费者--C");
+        System.out.println("message:" + o.toString());
     }
 }
