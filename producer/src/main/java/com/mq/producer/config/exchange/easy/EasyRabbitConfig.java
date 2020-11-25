@@ -20,7 +20,7 @@ public class EasyRabbitConfig {
     /**
      * 队列名称
      */
-    public static final String EASY_QUEUE_NAME = "easy.queue.name";
+    public static final String EASY_QUEUE_NAME = "easy_queue_name";
 
     @Bean
     public Queue easyRabbitQueue(){

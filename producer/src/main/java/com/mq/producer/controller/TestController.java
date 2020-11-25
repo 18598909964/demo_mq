@@ -35,12 +35,7 @@ public class TestController {
     public String sendEasyMessage(
             @PathVariable("params") String params
     ) {
-
-        try {
-            EasyRabbitConfig.easyRabbitMq(params);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        rabbitTemplate.convertAndSend("",EasyRabbitConfig.EASY_QUEUE_NAME,"Hello Word easyRabbitMq"+params);
         return "ok";
     }
 

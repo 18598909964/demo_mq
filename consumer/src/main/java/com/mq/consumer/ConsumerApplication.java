@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  *
- * @since 2020/9/14 9:55
- * @author JTX@jtxyh.top
+ * @data 2020/11/24 9:55
+ * @author wu-_-jia
  **/
 @SpringBootApplication
 @ComponentScan("com.mq")
