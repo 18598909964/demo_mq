@@ -55,4 +55,8 @@ public class RabbitMqReceiver {
         System.out.println("这是扇形(广播)消费者--C");
         System.out.println("message:" + o.toString());
     }
+
+    public static void main(String[] args) {
+        System.out.println("ceshi");
+    }
 }
