@@ -1,25 +1,21 @@
-package com.mq.consumer.config.basics;
+package com.mq.consumer.config.basics.work;
 
 import com.rabbitmq.client.*;
-import com.rabbitmq.client.impl.AMQConnection;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
- * 基础方式使用mq-消费者
+ * 工作队列模式,B
  *
  * @author xiao-_-wu
- * @date 2020/12/6 16:24
+ * @date 2020/12/7 13:53
  */
-public class ConsumerMqBasics {
+public class WorkQueuesConsumerB {
 
-    public static final String USERNAME = "wujia";
-    public static final String PASSWORD = "980307";
-    public static final String EASY_QUEUE = "easy-mode";
-    public static final String VIRTUAL_MACHINE = "mqhost";
+    public static final String WORK_QUEUE = "work-queue";
 
-    public static void easyModeConsumer() throws IOException, TimeoutException {
+    public static void workModeConsumerB() throws IOException, TimeoutException {
         //1.创建connection
         ConnectionFactory factory = new ConnectionFactory();
         //2.设置参数
@@ -47,20 +43,20 @@ public class ConsumerMqBasics {
              */
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-                System.out.println("consumerTag:" + consumerTag);
-                System.out.println("envelope:" + envelope.toString());
-                System.out.println("properties:" + properties);
+//                System.out.println("consumerTag:" + consumerTag);
+//                System.out.println("envelope:" + envelope.toString());
+//                System.out.println("properties:" + properties);
                 System.out.println("body:" + new String(body));
             }
         };
-        channel.basicConsume(EASY_QUEUE,true,consumer);
+        channel.basicConsume(WORK_QUEUE,true,consumer);
     }
 
 
 
     public static void main(String[] args) {
         try {
-            easyModeConsumer();
+            workModeConsumerB();
         } catch (Exception e) {
             System.out.println("标准异常");
         }
